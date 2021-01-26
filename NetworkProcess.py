@@ -1,4 +1,21 @@
 # -*- coding: utf-8 -*-
+from EventHandler import EventHandler
+
+class NetworkProcess(EventHandler):
+
+  def __init__(self, Sender, Receiver):
+    self.sender = Sender
+    self.messages = []
+    self.receiver = Receiver
+
+  def handleEvent(self):
+    self.messages = self.sender.retrieveMessages()
+    for element in self.messages:
+      self.receiver.deliverMessage(element)
+    Receiver = self.receiver
+    return Receiver 
+
+
 """
 TODO: Implement a NetworkProcess class
 
